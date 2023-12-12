@@ -37,6 +37,7 @@ choice = validateInput(input(""))
 
 #Main loop
 while True:
+    #Read frame from webcam
     ret, frame = cap.read()
     if ret:
         match choice:
@@ -52,12 +53,13 @@ while True:
             case 2:
                 #Complete color deficiency
                 frame = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-
+        #Display frame and listen for exit keypress Q
         cv.imshow(windowNames[choice], frame)
         if cv.waitKey(25) & 0xFF == ord('q'): 
             break
     else:
         break
 
+#Shutdown
 cap.release() 
 cv.destroyAllWindows() 
